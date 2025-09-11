@@ -1,0 +1,31 @@
+agents:
+  - agent:
+      id: "[Agent name based on capability]"
+      capability:
+        goal: "[Specific goal this agent achieves]"
+        example_scenarios:
+          - "[When users would need this capability - scenario 1]"
+          - "[When users would need this capability - scenario 2]"
+          - "[When users would need this capability - scenario 3]"
+        success_criteria: "[How we know the goal was successfully achieved]"
+        scope_definition:
+          included: "[What this capability encompasses]"
+          excluded: "[What this capability does not include and why]"
+          boundaries: "[Clear lines between this and other agent capabilities]"
+    
+routing_patterns:
+  - description: "[How agents work in sequence to achieve advanced capability]"
+    execution_patterns:
+      standard_pattern:
+        description: "[Most common way the capability is delivered]"
+        tool_sequence: "[Typical order of tool usage]"
+        variable_flow: "[How variables flow through the tools]"
+        decision_points: "[Where agent chooses between approaches]"
+        
+      alternative_patterns:
+        - pattern_name: "[Alternative approach name]"
+          description: "[Different way to achieve the same capability]"
+          trigger_conditions: "[When this pattern is used instead of standard]"
+          tool_sequence: "[Different sequence or tool combination]"
+          variable_considerations: "[How variable requirements differ]"
+      

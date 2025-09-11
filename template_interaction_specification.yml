@@ -1,0 +1,11 @@
+interaction_specification:
+  name: "[User Type]"
+  role: "[Job Title/Function]"
+  interaction_goal: "[What user wants to accomplish]"
+  success_metrics: "[I want X result in N turns, How does the user measure value]"
+
+  ideal_conversational_flow:
+    - user: "[QUERY]"
+      system: "[RESPONSE]"
+    - user: "[QUERY]"
+      system: "[RESPONSE]"

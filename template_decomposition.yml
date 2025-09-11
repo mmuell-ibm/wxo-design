@@ -1,0 +1,25 @@
+options:
+  - id: "[Conversation turn from Interaction Specification]"
+    goal: "[What this specific turn should accomplish]"
+    variables:
+      inputs_required:
+        - variable: "[Name for the variable needed]"
+          derivation: "[How do we come up with the variable]"
+          source: "[Existing variable]"
+
+    steps:
+      - id: 1.1
+        goal: "[Step Goal]"
+        inputs_required:
+          - variable: "[Name for the variable needed]"
+            derivation: "[How do we come up with the variable]"
+            source: "[Existing variable]"
+        outputs_produced:
+          - variable: "[Name of the produced variable]"
+            description: "[Description of the variable]"
+
+Scope: Find the largest set of steps that should always be executed together.
+Aggregation: Combine similar operations unless doing so impacts input variable derivation clarity
+Variables: Trace the inputs required down to the lowest level that still requires conversational elements
+Design: Having clean derivations for variables that require conversational elements is vital
+Tool Call Variable: Extraction can only occur at the current agent

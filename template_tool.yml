@@ -1,0 +1,9 @@
+id: "[Name of the tool]"
+goal: "[What this tool should accomplish]"
+selection_conditions: "[When should this tool be called]"
+inputs_required:
+  - variable: "[Name for the variable needed]"
+    derivation: "[How do we come up with the variable]"
+
+
+Design: We should be optimizing for as clear of input derivation and tool selection as possible
