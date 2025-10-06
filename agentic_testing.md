@@ -19,7 +19,6 @@ By the end of this guide, you will be able to:
 - Interpret evaluation metrics and identify performance issues
 - Analyze detailed test results to pinpoint root causes
 - Communicate actionable feedback to development teams
-- Integrate agent testing into CI/CD pipelines
 
 ---
 
