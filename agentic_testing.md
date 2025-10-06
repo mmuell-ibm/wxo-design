@@ -1,5 +1,50 @@
 # Testing Agentic AI: A Practical Guide for QA Teams
 
+## Table of Contents
+
+1. [Introduction: When Your AI Agent Goes Rogue](#introduction-when-your-ai-agent-goes-rogue)
+2. [What You'll Learn](#what-youll-learn)
+3. [Understanding the Agent Testing Challenge](#understanding-the-agent-testing-challenge)
+   - [Why Traditional Testing Falls Short](#why-traditional-testing-falls-short)
+   - [How Agent Testing Actually Works](#how-agent-testing-actually-works)
+   - [The Three Dimensions of Agent Testing](#the-three-dimensions-of-agent-testing)
+4. [Measuring Agent Performance: Key Metrics Explained](#measuring-agent-performance-key-metrics-explained)
+   - [Core Performance Metrics](#core-performance-metrics)
+   - [Advanced Metrics for Knowledge-Enabled Agents](#advanced-metrics-for-knowledge-enabled-agents)
+5. [Core Concept: Ground Truth Datasets](#core-concept-ground-truth-datasets)
+   - [The Mental Model: Recipes for Success](#the-mental-model-recipes-for-success)
+   - [Anatomy of a Dataset](#anatomy-of-a-dataset)
+   - [Dataset Components Explained](#dataset-components-explained)
+   - [Why This Structure Matters](#why-this-structure-matters)
+6. [Hands-On Exercise 1: Create Your First Test Case](#hands-on-exercise-1-create-your-first-test-case)
+   - [Scenario Setup](#scenario-setup)
+   - [Step-by-Step Test Creation](#step-by-step-test-creation)
+   - [Complete Test Case](#complete-test-case)
+   - [Key Takeaways](#key-takeaways)
+7. [Hands-On Exercise 2: Creating User Stories for Batch Testing](#hands-on-exercise-2-creating-user-stories-for-batch-testing)
+   - [Scenario Setup](#scenario-setup-1)
+   - [Part 1: Happy Path Stories](#part-1-happy-path-stories)
+   - [Part 2: Multi-Step Stories](#part-2-multi-step-stories)
+   - [Test Coverage Analysis](#test-coverage-analysis)
+8. [Hands-On Exercise 3: Analyzing Test Results and Providing QA Feedback](#hands-on-exercise-3-analyzing-test-results-and-providing-qa-feedback)
+   - [Scenario Setup](#scenario-setup-2)
+   - [Initial Analysis Questions](#initial-analysis-questions)
+   - [Detailed Test Case Analysis](#detailed-test-case-analysis)
+   - [Key Takeaways from This Exercise](#key-takeaways-from-this-exercise)
+9. [Running Evaluations in CI/CD Pipelines](#running-evaluations-in-cicd-pipelines)
+   - [Why CI/CD Integration Matters](#why-cicd-integration-matters)
+   - [Progressive Quality Gates](#progressive-quality-gates)
+   - [Monitoring in Production](#monitoring-in-production)
+10. [Security Testing: Red-Teaming Your Agent](#security-testing-red-teaming-your-agent)
+    - [Why Security Testing Matters](#why-security-testing-matters)
+    - [Understanding Attack Categories](#understanding-attack-categories)
+    - [Running Security Tests](#running-security-tests)
+    - [Interpreting Security Test Results](#interpreting-security-test-results)
+    - [Strengthening Agent Defenses](#strengthening-agent-defenses)
+12. [Conclusion](#conclusion)
+
+---
+
 ## Introduction: When Your AI Agent Goes Rogue
 
 Imagine deploying an AI agent to handle employee HR requests. Everything seems perfect in development: it books time off, retrieves schedules, and answers questions smoothly. Then, on day one in production, it starts calling the wrong APIs, mixing up employee data, and occasionally ignoring user requests entirely.
@@ -19,6 +64,7 @@ By the end of this guide, you will be able to:
 - Interpret evaluation metrics and identify performance issues
 - Analyze detailed test results to pinpoint root causes
 - Communicate actionable feedback to development teams
+- Integrate agent testing into CI/CD pipelines
 
 ---
 
@@ -861,7 +907,7 @@ orchestrate evaluations generate \
 
 ### Test Coverage Analysis
 
-These 7 stories cover:
+These 5 stories cover:
 
 - **Happy paths** (Stories 1-3): Common requests that should work smoothly
 - **Multi-tool coordination** (Story 4): Tests complex workflows
@@ -1289,6 +1335,11 @@ Not all code changes require the same standards. Consider tiered quality gates:
 
 CI/CD integration shouldn't stop at deployment. Continue monitoring agent performance in production:
 
+- Run daily evaluations against production
+- Track metrics over time to detect gradual degradation
+- Alert on performance drops exceeding thresholds
+- Add new test cases for any production issues discovered
+
 ---
 
 ## Security Testing: Red-Teaming Your Agent
@@ -1431,151 +1482,36 @@ After implementing defenses, re-run security tests to verify improvements.
 
 ---
 
-## Complete Testing Workflow
+## Conclusion
 
-Here's how everything fits together in a comprehensive testing strategy:
+Testing agentic AI systems represents a paradigm shift from traditional software quality assurance. While conventional testing verifies that code executes as written, agent testing must validate something far more complex: can an AI system reason correctly, make appropriate decisions, and communicate effectively with humans.
 
-### Phase 1: Development Testing
+### Key Principles to Remember
 
-**Objective:** Catch obvious bugs early
+**Structure enables evaluation.** Ground truth datasets transform subjective assessments ("Does this agent work well?") into objective measurements. Without structured test cases defining expected behavior, you cannot reliably measure success or identify regression.
 
-**Actions:**
-- Use `quick-eval` to verify tools execute without errors
-- Test individual tools in isolation
-- Verify schema compliance (correct parameter types)
+**Testing is multi-dimensional.** Functional correctness alone is insufficient. Your agent must execute the right actions, communicate clearly with users, and resist manipulation attempts. All three dimensions matter for production readiness.
 
-**Quality Gates:**
-- Zero schema mismatches
-- Zero hallucinated tools
-- All tools execute successfully
+**Metrics tell stories.** Journey success rates, precision, and recall aren't just numbers—they reveal patterns in agent behavior. Low precision indicates overactive tool usage. Low recall suggests incomplete reasoning. Together, these metrics guide you toward root causes.
 
-**Timeline:** Run on every code commit (CI/CD)
+**Security cannot be an afterthought.** AI agents face attack vectors that traditional software doesn't encounter. Prompt injection, instruction override, and social engineering are real threats that require dedicated testing and mitigation strategies.
 
----
+**Automation is essential.** Manual testing cannot scale to cover the combinatorial explosion of possible conversations. Automated evaluation frameworks provide the scalability, consistency, and speed necessary for continuous quality assurance.
 
-### Phase 2: Functional Testing
+### The Path Forward
 
-**Objective:** Verify agent solves problems correctly
+As you implement these testing practices, remember that perfection is iterative. Start with core happy paths, establish baseline metrics, and progressively expand coverage to edge cases and adversarial scenarios. Each test case you write makes your agent more robust. Each failure you analyze improves your understanding of agent behavior.
 
-**Actions:**
-- Create ground truth datasets for core user journeys
-- Run full evaluations with `evaluate`
-- Aim for >90% Journey Success on happy paths
-- Review precision, recall, and text match metrics
+The goal isn't to eliminate all failures—that's impossible with systems that reason dynamically. The goal is to understand your agent's capabilities and limitations well enough to deploy it confidently, knowing you've tested the scenarios that matter most to your users.
 
-**Quality Gates:**
-- Journey Success >90% on standard flows
-- Tool Call Precision >0.90
-- Tool Call Recall >0.95
-- Text Match mostly "Good" or "Excellent"
+### Next Steps
 
-**Timeline:** Run on pull requests and daily in staging
+1. **Start small:** Create 5-10 test cases for your agent's most common tasks
+2. **Establish baselines:** Run evaluations to understand current performance
+3. **Integrate with CI/CD:** Make testing part of your deployment pipeline
+4. **Iterate continuously:** Add test cases for every production issue discovered
+5. **Share knowledge:** Document patterns and edge cases for your team
 
----
+Testing agentic AI is challenging, but it's also essential. The techniques in this guide give you the tools to catch issues before they reach users, communicate effectively with development teams, and build confidence in your AI systems. Now it's time to put them into practice.
 
-### Phase 3: Edge Case Testing
-
-**Objective:** Handle real-world messiness
-
-**Actions:**
-- Add datasets for boundary conditions (empty inputs, max values)
-- Test ambiguous user requests
-- Test error scenarios (API failures, invalid data)
-- Analyze failures to identify patterns
-- Improve tool descriptions and agent prompting
-
-**Quality Gates:**
-- Journey Success >75% on edge cases
-- Zero critical failures (crashes, data corruption)
-- Graceful error handling in all scenarios
-
-**Timeline:** Before production deployment
-
----
-
-### Phase 4: Security Testing
-
-**Objective:** Resist manipulation and protect information
-
-**Actions:**
-- Run red-teaming attacks with `red-teaming run`
-- Achieve <5% attack success rates
-- Update system prompts to reinforce boundaries
-- Re-test until defenses are adequate
-
-**Quality Gates:**
-- Instruction Override success <5%
-- Prompt Leakage success <10%
-- Social Engineering success <5%
-
-**Timeline:** Before production deployment and quarterly thereafter
-
----
-
-### Phase 5: Continuous Monitoring
-
-**Objective:** Maintain quality in production
-
-**Actions:**
-- Run evaluations daily against production environment
-- Track metrics over time
-- Alert on performance degradation >5%
-- Add new test cases for any production issues discovered
-
-**Quality Gates:**
-- Performance stays within 5% of baseline
-- No new failure patterns emerge
-- Response time remains acceptable
-
-**Timeline:** Ongoing in production
-
----
-
-## Best Practices for QA Teams
-
-### Creating Effective Test Cases
-
-**DO:**
-- Include complete context in stories (all necessary details)
-- Use realistic starting sentences (vague, incomplete)
-- Test dependencies and ordering
-- Verify both functional correctness and response quality
-- Cover happy paths AND edge cases
-
-**DON'T:**
-- Make starting sentences overly specific (users aren't that precise)
-- Skip edge cases because "users won't do that" (they will)
-- Test only individual tools (test full workflows)
-- Assume the agent will "just figure it out" (be explicit about expectations)
-
-### Analyzing Results Effectively
-
-**DO:**
-- Look at both precision AND recall together
-- Read detailed logs for failed tests (don't just look at metrics)
-- Identify patterns across multiple failures
-- Form hypotheses about root causes
-- Consider user impact, not just technical correctness
-
-**DON'T:**
-- Focus on one metric in isolation
-- Accept "good enough" metrics below thresholds
-- Ignore text quality if technical steps pass
-- Assume all failures have the same root cause
-
-### Communicating with Developers
-
-**DO:**
-- Provide specific test cases for reproduction
-- Include expected vs. actual behavior
-- Hypothesize root causes with evidence
-- Suggest potential fixes based on patterns
-- Prioritize issues by severity and user impact
-- Include reproduction steps
-
-**DON'T:**
-- Report vague issues ("agent doesn't work")
-- Blame without evidence ("the prompt is bad")
-- Report without attempting diagnosis
-- Mix multiple unrelated issues in one report
-- Skip priority/severity classification
+Welcome to the future of QA.
