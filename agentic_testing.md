@@ -903,7 +903,7 @@ orchestrate evaluations generate \
 2. For each story, it analyzes your tool definitions
 3. It determines the logical sequence of tool calls needed
 4. It generates complete test datasets with dependencies and expected responses
-5. Output: 7 complete test cases ready for evaluation
+5. Output: Complete test cases ready for evaluation
 
 ### Test Coverage Analysis
 
